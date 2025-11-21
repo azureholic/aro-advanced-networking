@@ -89,13 +89,7 @@ Key settings in `.env`:
 | snet-waf | 10.0.7.0/24 | Web Application Firewall |
 | snet-private-endpoints | 10.0.8.0/24 | Private endpoints |
 
-## Troubleshooting
 
-### RBAC Permissions
-If infrastructure nodes fail to provision due to subnet read permissions:
-```powershell
-.\fix-infra-subnet-rbac.ps1
-```
 
 ### View Cluster Info
 ```bash

@@ -26,7 +26,7 @@ metadata:
   name: ingress-external
   namespace: openshift-ingress-operator
 spec:
-  domain: apps-external.aro-schiphol.uksouth.aroapp.io
+  domain: apps-external.<CLUSTERNAME>.uksouth.aroapp.io
   replicas: 3
   endpointPublishingStrategy:
     type: LoadBalancerService
