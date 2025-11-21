@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: internal-test-deployment
+  namespace: internal-apps
+  labels:
+    app: internal-test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: internal-test
+  template:
+    metadata:
+      labels:
+        app: internal-test
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: worker-segment
+                operator: DoesNotExist
+      containers:
+        - name: nginx
+          image: nginxinc/nginx-unprivileged:1.27-alpine
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          resources:
+            requests:
+              cpu: 25m
+              memory: 32Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+          env:
+            - name: HELLO_MESSAGE
+              value: "Hello from internal-segment ingress"
+          volumeMounts:
+            - name: index-html
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: index-html
+          configMap:
+            name: internal-test-index
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: internal-test-index
+  namespace: internal-apps
+  labels:
+    app: internal-test
+data:
+  index.html: |
+    <html><head><title>Internal Test</title></head><body>
+    <h1>Internal Hello World</h1>
+    <p>This page is served through the internal ingress on internal infra nodes.</p>
+    <p>Static timestamp placeholder (no shell expansion inside ConfigMap).</p>
+    </body></html>
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: internal-test-service
+  namespace: internal-apps
+  labels:
+    app: internal-test
+spec:
+  selector:
+    app: internal-test
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: internal-test-route
+  namespace: internal-apps
+  labels:
+    app: internal-test
+    ingress-type: "internal"
+spec:
+  host: internal-test.apps-internal.aro-cluster.uksouth.aroapp.io
+  to:
+    kind: Service
+    name: internal-test-service
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

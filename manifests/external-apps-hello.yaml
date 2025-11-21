@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-test-deployment
+  namespace: external-apps
+  labels:
+    app: external-test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: external-test
+  template:
+    metadata:
+      labels:
+        app: external-test
+    spec:
+      nodeSelector:
+        worker-segment: external
+      containers:
+        - name: nginx
+          image: nginxinc/nginx-unprivileged:1.27-alpine
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          resources:
+            requests:
+              cpu: 25m
+              memory: 32Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+          env:
+            - name: HELLO_MESSAGE
+              value: "Hello from external-segment ingress"
+          volumeMounts:
+            - name: index-html
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: index-html
+          configMap:
+            name: external-test-index
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: external-test-index
+  namespace: external-apps
+  labels:
+    app: external-test
+data:
+  index.html: |
+    <html><head><title>External Test</title></head><body>
+    <h1>External Hello World</h1>
+    <p>This page is served through the internal-scope load balancer on external infra nodes.</p>
+    <p>Static timestamp placeholder (no shell expansion inside ConfigMap).</p>
+    </body></html>
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-test-service
+  namespace: external-apps
+  labels:
+    app: external-test
+spec:
+  selector:
+    app: external-test
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: external-test-route
+  namespace: external-apps
+  labels:
+    app: external-test
+    ingress-type: "external"
+spec:
+  host: external-test.apps-external.aro-cluster.uksouth.aroapp.io
+  to:
+    kind: Service
+    name: external-test-service
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

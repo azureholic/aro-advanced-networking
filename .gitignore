@@ -1,0 +1,24 @@
+# Security - Never commit sensitive files
+pullsecret.txt
+*.secret
+*.key
+*.pem
+
+# Azure deployment files
+infra/parameters-deployment.json
+kubeconfig-*
+
+# Temporary files
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# PowerShell
+*.ps1xml.env

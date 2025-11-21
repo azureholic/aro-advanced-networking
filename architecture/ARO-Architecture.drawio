@@ -1,0 +1,302 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2">
+  <diagram name="ARO Architecture" id="ARO-Architecture">
+    <mxGraphModel dx="1708" dy="860" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Azure Red Hat OpenShift - Network Architecture with Subnet Segmentation" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1;fontColor=#2E3B4E;" parent="1" vertex="1">
+          <mxGeometry x="550" y="20" width="800" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Cluster: aro-schiphol-cp7qb | VNet: vnet-aro-schiphol (10.0.0.0/16) | Region: UK South" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="550" y="60" width="800" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="internet" value="🌐 Internet" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#E8F4FD;strokeColor=#6C8EBF;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="860" y="80" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="azure-box" value="Azure Resource Group: rg-aro-schiphol" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#F8F9FA;strokeColor=#6C8EBF;strokeWidth=3;verticalAlign=top;align=left;" parent="1" vertex="1">
+          <mxGeometry x="40" y="200" width="1820" height="1340" as="geometry" />
+        </mxCell>
+        <mxCell id="vnet-box" value="Virtual Network: vnet-aro-schiphol (10.0.0.0/16)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#E1F5FE;strokeColor=#0277BD;strokeWidth=2;verticalAlign=top;align=left;" parent="1" vertex="1">
+          <mxGeometry x="80" y="240" width="1740" height="1110" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet-masters" value="snet-masters (10.0.1.0/24)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fontStyle=1;fillColor=#FFE082;strokeColor=#F57C00;strokeWidth=2;verticalAlign=top;align=center;" parent="1" vertex="1">
+          <mxGeometry x="120" y="300" width="280" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg-masters" value="🛡️ NSG: Masters" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#FFB300;strokeColor=#E65100;" parent="1" vertex="1">
+          <mxGeometry x="130" y="330" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="master-1" value="💻 Master Node 1&#xa;10.0.1.4&#xa;Standard_D8s_v3&#xa;Zone 1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#FFF9C4;strokeColor=#F57C00;" parent="1" vertex="1">
+          <mxGeometry x="140" y="380" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="master-2" value="💻 Master Node 2&#xa;10.0.1.5&#xa;Standard_D8s_v3&#xa;Zone 2" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#FFF9C4;strokeColor=#F57C00;" parent="1" vertex="1">
+          <mxGeometry x="270" y="380" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="master-3" value="💻 Master Node 3&#xa;10.0.1.6&#xa;Standard_D8s_v3&#xa;Zone 3" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#FFF9C4;strokeColor=#F57C00;" parent="1" vertex="1">
+          <mxGeometry x="140" y="450" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="masters-role" value="🎯 Control Plane&#xa;API Server, etcd, Controllers" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#F57C00;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="270" y="460" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet-workers" value="snet-workers (10.0.2.0/24)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fontStyle=1;fillColor=#A5D6A7;strokeColor=#388E3C;strokeWidth=2;verticalAlign=top;align=center;" parent="1" vertex="1">
+          <mxGeometry x="440" y="300" width="280" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg-workers" value="🛡️ NSG: Workers" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#66BB6A;strokeColor=#2E7D32;" parent="1" vertex="1">
+          <mxGeometry x="450" y="330" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="worker-1" value="💻 Worker Node 1&#xa;10.0.2.4&#xa;Standard_D4s_v5&#xa;Zone 1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#C8E6C9;strokeColor=#388E3C;" parent="1" vertex="1">
+          <mxGeometry x="460" y="380" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="worker-2" value="💻 Worker Node 2&#xa;10.0.2.5&#xa;Standard_D4s_v5&#xa;Zone 2" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#C8E6C9;strokeColor=#388E3C;" parent="1" vertex="1">
+          <mxGeometry x="590" y="380" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="worker-3" value="💻 Worker Node 3&#xa;10.0.2.6&#xa;Standard_D4s_v5&#xa;Zone 3" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#C8E6C9;strokeColor=#388E3C;" parent="1" vertex="1">
+          <mxGeometry x="460" y="450" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="workers-role" value="🎯 All Application Workloads&#xa;Internal &amp; External Apps&#xa;Label: node-role.kubernetes.io/worker" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#2E7D32;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="590" y="450" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet-infra-internal" value="snet-infra-internal (10.0.3.0/24)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fontStyle=1;fillColor=#F48FB1;strokeColor=#C2185B;strokeWidth=2;verticalAlign=top;align=center;" parent="1" vertex="1">
+          <mxGeometry x="760" y="300" width="280" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg-infra-internal" value="🛡️ NSG: Infra Internal" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#EC407A;strokeColor=#AD1457;" parent="1" vertex="1">
+          <mxGeometry x="770" y="330" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-internal-1" value="💻 Infra Internal 1&#xa;10.0.3.4&#xa;Standard_D4s_v3&#xa;Zone 1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#FCE4EC;strokeColor=#C2185B;" parent="1" vertex="1">
+          <mxGeometry x="780" y="380" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-internal-2" value="💻 Infra Internal 2&#xa;10.0.3.5&#xa;Standard_D4s_v3&#xa;Zone 2" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#FCE4EC;strokeColor=#C2185B;" parent="1" vertex="1">
+          <mxGeometry x="910" y="380" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-internal-3" value="💻 Infra Internal 3&#xa;10.0.3.6&#xa;Standard_D4s_v3&#xa;Zone 3" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#FCE4EC;strokeColor=#C2185B;" parent="1" vertex="1">
+          <mxGeometry x="780" y="450" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-internal-label" value="🎯 Internal Ingress&#xa;Default Ingress&#xa;Monitoring, Registry&#xa;Label: infra-segment=internal" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#880E4F;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="900" y="450" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet-infra-external" value="snet-infra-external (10.0.4.0/24)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fontStyle=1;fillColor=#90CAF9;strokeColor=#1565C0;strokeWidth=2;verticalAlign=top;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1080" y="300" width="280" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg-infra-external" value="🛡️ NSG: Infra External" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#42A5F5;strokeColor=#0D47A1;" parent="1" vertex="1">
+          <mxGeometry x="1090" y="330" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-external-1" value="💻 Infra External 1&#xa;10.0.4.4&#xa;Standard_D4s_v3&#xa;Zone 1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#BBDEFB;strokeColor=#1565C0;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="380" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-external-2" value="💻 Infra External 2&#xa;10.0.4.5&#xa;Standard_D4s_v3&#xa;Zone 2" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#BBDEFB;strokeColor=#1565C0;" parent="1" vertex="1">
+          <mxGeometry x="1230" y="380" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-external-3" value="💻 Infra External 3&#xa;10.0.4.6&#xa;Standard_D4s_v3&#xa;Zone 3" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#BBDEFB;strokeColor=#1565C0;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="450" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-external-label" value="🎯 External Ingress&#xa;Routes external traffic&#xa;Label: infra-segment=external" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#0D47A1;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="1220" y="450" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet-adc-internal" value="snet-adc-internal (10.0.5.0/24)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fontStyle=1;fillColor=#CE93D8;strokeColor=#6A1B9A;strokeWidth=2;verticalAlign=top;align=center;" parent="1" vertex="1">
+          <mxGeometry x="120" y="540" width="280" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg-adc-internal" value="🛡️ NSG: ADC Internal" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#AB47BC;strokeColor=#4A148C;" parent="1" vertex="1">
+          <mxGeometry x="130" y="570" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lb-internal" value="⚖️ Internal Load Balancer&#xa;10.0.5.4&#xa;Azure Standard LB&#xa;Type: Internal" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fontStyle=1;fillColor=#E1BEE7;strokeColor=#6A1B9A;" parent="1" vertex="1">
+          <mxGeometry x="140" y="620" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="internal-ingress" value="🎯 Routes to:&#xa;ingress-internal-apps" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#4A148C;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="290" y="640" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet-adc-external" value="snet-adc-external (10.0.6.0/24)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fontStyle=1;fillColor=#80CBC4;strokeColor=#00695C;strokeWidth=2;verticalAlign=top;align=center;" parent="1" vertex="1">
+          <mxGeometry x="440" y="540" width="280" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg-adc-external" value="🛡️ NSG: ADC External" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#26A69A;strokeColor=#004D40;" parent="1" vertex="1">
+          <mxGeometry x="450" y="570" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lb-external" value="⚖️ External Load Balancer&#xa;10.0.6.4&#xa;Azure Standard LB&#xa;Type: Internal" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fontStyle=1;fillColor=#B2DFDB;strokeColor=#00695C;" parent="1" vertex="1">
+          <mxGeometry x="460" y="620" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="external-ingress" value="🎯 Routes to:&#xa;ingress-external-apps&#xa;(AppGW backend target)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#004D40;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="610" y="630" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet-waf" value="snet-waf (10.0.7.0/24)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fontStyle=1;fillColor=#BCAAA4;strokeColor=#5D4037;strokeWidth=2;verticalAlign=top;align=center;" parent="1" vertex="1">
+          <mxGeometry x="760" y="540" width="280" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg-waf" value="🛡️ NSG: WAF" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#A1887F;strokeColor=#3E2723;" parent="1" vertex="1">
+          <mxGeometry x="770" y="570" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="appgw-future" value="📦 Application Gateway&#xa;(Future Deployment)&#xa;&#xa;• WAF v2&#xa;• Public IP&#xa;• SSL Termination&#xa;• Backend: External LB (10.0.6.4)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#FFE0B2;strokeColor=#E65100;strokeWidth=2;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="780" y="610" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet-pe" value="snet-private-endpoints (10.0.8.0/24)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fontStyle=1;fillColor=#FFCC80;strokeColor=#E65100;strokeWidth=2;verticalAlign=top;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1080" y="540" width="280" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg-pe" value="🛡️ NSG: Private Endpoints" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#FF9800;strokeColor=#BF360C;" parent="1" vertex="1">
+          <mxGeometry x="1090" y="570" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pe-services" value="🔗 Azure Services:&#xa;• 💾 Storage Account&#xa;• 🔑 Key Vault&#xa;• 📦 Container Registry&#xa;• 🗄️ SQL Database" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#BF360C;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="620" width="150" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="app-layer" value="Application Workloads" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#E0E0E0;strokeColor=#424242;strokeWidth=2;verticalAlign=top;align=center;" parent="1" vertex="1">
+          <mxGeometry x="120" y="760" width="1560" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="internal-apps-box" value="Internal Applications (Default Workers)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1;fillColor=#A5D6A7;strokeColor=#388E3C;verticalAlign=top;align=center;" parent="1" vertex="1">
+          <mxGeometry x="140" y="800" width="720" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="internal-app-1" value="internal-test-app&#xa;Replicas: 2&#xa;Route: internal-test.apps-internal...&#xa;NodeAffinity: worker-segment DoesNotExist" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#C8E6C9;strokeColor=#388E3C;" parent="1" vertex="1">
+          <mxGeometry x="160" y="840" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="internal-ingress-svc" value="ingress-internal&#xa;Controller on infra-internal nodes&#xa;LB: 10.0.5.4&#xa;Label: ingress-type=internal" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#81C784;strokeColor=#2E7D32;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="380" y="840" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="internal-traffic" value="🔒 Private traffic only&#xa;VNet internal access" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#2E7D32;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="600" y="870" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="external-apps-box" value="External Applications (Default Workers)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1;fillColor=#90CAF9;strokeColor=#1565C0;verticalAlign=top;align=center;" parent="1" vertex="1">
+          <mxGeometry x="900" y="800" width="760" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="external-app-1" value="external-test-app&#xa;Replicas: 2&#xa;Route: external-test.apps-external...&#xa;Runs on default workers" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#BBDEFB;strokeColor=#1565C0;" parent="1" vertex="1">
+          <mxGeometry x="920" y="840" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="external-ingress-svc" value="ingress-external&#xa;Controller on infra-external nodes&#xa;LB: 10.0.6.4&#xa;Label: ingress-type=external" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;fillColor=#64B5F6;strokeColor=#0D47A1;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="1140" y="840" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="external-traffic" value="🌐 Internet-facing traffic&#xa;Routes through external LB&#xa;to same worker nodes as internal" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#0D47A1;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="1360" y="860" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="flow-internet-appgw" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=4;strokeColor=#FF6F00;startArrow=none;endArrow=classic;entryX=0.5;entryY=0;" parent="1" source="internet" target="appgw-future" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="950" y="180" />
+              <mxPoint x="900" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-internet-appgw-label" value="🌐 Internet Traffic&#xa;HTTPS (443)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#FF6F00;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="920" y="280" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="flow-appgw-lb" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;strokeColor=#E65100;startArrow=none;endArrow=classic;dashed=1;dashPattern=8 4;" parent="1" source="appgw-future" target="lb-external" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="820" y="655" />
+              <mxPoint x="530" y="655" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-appgw-lb-label" value="📦 WAF Filtered Traffic&#xa;to External LB&#xa;(Future)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#E65100;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="600" y="615" width="120" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="flow-lb-ingress-ext" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;strokeColor=#1976D2;startArrow=none;endArrow=classic;" parent="1" source="lb-external" target="infra-external-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="530" />
+              <mxPoint x="1155" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-ingress-workers-ext" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;strokeColor=#3F51B5;startArrow=none;endArrow=classic;" parent="1" source="infra-external-1" target="worker-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1155" y="280" />
+              <mxPoint x="515" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-lb-ingress-int" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;strokeColor=#7B1FA2;startArrow=none;endArrow=classic;dashed=1;dashPattern=8 8;" parent="1" source="lb-internal" target="infra-internal-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="520" />
+              <mxPoint x="835" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-ingress-workers-int" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;strokeColor=#43A047;startArrow=none;endArrow=classic;dashed=1;dashPattern=8 8;" parent="1" source="infra-internal-1" target="worker-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="780" y="410" />
+              <mxPoint x="515" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-box" value="Legend" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#E0E0E0;strokeColor=#424242;strokeWidth=2;verticalAlign=top;align=center;" parent="1" vertex="1">
+          <mxGeometry x="120" y="1020" width="760" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title1" value="Node Types &amp; Roles:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;fontColor=#333;" parent="1" vertex="1">
+          <mxGeometry x="140" y="1050" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-masters" value="Masters: Control plane (API, etcd)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#666;" parent="1" vertex="1">
+          <mxGeometry x="140" y="1070" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-workers" value="Default Workers: All application workloads (internal &amp; external)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#666;" parent="1" vertex="1">
+          <mxGeometry x="140" y="1090" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-infra-int" value="Internal Infra: Internal ingress, default ingress, monitoring, registry" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#666;" parent="1" vertex="1">
+          <mxGeometry x="140" y="1110" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-infra-ext" value="External Infra: External ingress controller routing to same workers" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#666;" parent="1" vertex="1">
+          <mxGeometry x="140" y="1130" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title2" value="Traffic Patterns:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;fontColor=#333;" parent="1" vertex="1">
+          <mxGeometry x="500" y="1050" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-solid" value="━━━ External (Internet → AppGW → External Apps)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#FF6F00;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="1070" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-dashed" value="- - - Internal (VNet → Internal Apps)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#7B1FA2;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="1090" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-appgw" value="- - - Future AppGW deployment" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#E65100;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="1110" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-nsg-icon" value="🛡️ Network Security Group (NSG)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#666;" parent="1" vertex="1">
+          <mxGeometry x="500" y="1130" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title3" value="Isolation Strategy:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;fontColor=#333;" parent="1" vertex="1">
+          <mxGeometry x="140" y="1180" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-isolation" value="• All application workloads run on default worker nodes (internal &amp; external apps)&#xa;• Internal ingress controller runs on infra-internal nodes (label: infra-segment=internal)&#xa;• External ingress controller runs on infra-external nodes (label: infra-segment=external)&#xa;• Both ingress controllers route to the same worker nodes&#xa;• Internal LB (10.0.5.4) routes VNet traffic to internal ingress controller&#xa;• External LB (10.0.6.4) is Azure internal-type LB, serves as AppGW backend target&#xa;• Future: Application Gateway routes WAF-filtered traffic to External LB (10.0.6.4)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#666;" parent="1" vertex="1">
+          <mxGeometry x="140" y="1200" width="700" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="info-box" value="Cluster Information" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#BBDEFB;strokeColor=#1565C0;strokeWidth=2;verticalAlign=top;align=center;" parent="1" vertex="1">
+          <mxGeometry x="920" y="1020" width="760" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="info-cluster" value="Cluster Name: aro-schiphol-cp7qb" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#0D47A1;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="940" y="1050" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="info-region" value="Region: UK South (uksouth)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#0D47A1;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="940" y="1070" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="info-version" value="OpenShift Version: 4.15" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#0D47A1;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="940" y="1090" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="info-vnet" value="VNet CIDR: 10.0.0.0/16 (vnet-aro-schiphol)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#0D47A1;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="940" y="1110" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="info-nodes" value="Node Count: 12 nodes (3 masters, 3 workers, 3 internal infra, 3 external infra)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#0D47A1;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="940" y="1130" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="info-title2" value="Load Balancer Configuration:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;fontColor=#0D47A1;" parent="1" vertex="1">
+          <mxGeometry x="940" y="1160" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="info-lb-int" value="• Internal LB (10.0.5.4): VNet internal traffic only" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#666;" parent="1" vertex="1">
+          <mxGeometry x="940" y="1180" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="info-lb-ext" value="• External LB (10.0.6.4): AppGW backend target (future deployment)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#666;" parent="1" vertex="1">
+          <mxGeometry x="940" y="1200" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="info-title3" value="Backend Pools:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=1;fontColor=#0D47A1;" parent="1" vertex="1">
+          <mxGeometry x="1300" y="1050" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="info-backend" value="ARO manages LB backend pools automatically.&#xa;All 9 nodes in shared pool.&#xa;Traffic isolation via OpenShift routing&#xa;and pod node selectors." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#666;" parent="1" vertex="1">
+          <mxGeometry x="1300" y="1070" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="info-ha" value="High Availability: All nodes across 3 availability zones (Zone 1, 2, 3)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#2E7D32;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="1300" y="1140" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="info-status" value="Status: ✅ All nodes operational | Architecture: Shared workers, dedicated ingress controllers" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#2E7D32;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="1300" y="1180" width="340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="footer" value="Diagram: Azure Red Hat OpenShift Network Architecture | Updated: November 2025 | Shows future Application Gateway deployment path" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#999;fontStyle=2;" parent="1" vertex="1">
+          <mxGeometry x="550" y="1370" width="800" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
