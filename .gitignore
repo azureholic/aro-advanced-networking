@@ -21,4 +21,7 @@ Thumbs.db
 *.swo
 
 # PowerShell
-*.ps1xml.env
+*.ps1xml
+
+# Environment variables
+.env
